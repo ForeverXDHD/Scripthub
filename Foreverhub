@@ -1,0 +1,36 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+function Script()
+    local Window = Library.CreateLib("For's Prison life script hub", "DarkTheme")
+    local Tab = Window:NewTab("Main")
+    local MainSection = Tab:NewSection("Walkspeed")
+    MainSection:NewSlider("WalkSpeed", "How Fast you walk", 250, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+    end)
+    local MainSection2 = Tab:NewSection("Jump Power")
+    MainSection2:NewSlider("jump power", "how high you jump", 250, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+    end)
+    local MainSection3 = Tab:NewSection("Admin")
+
+    MainSection3:NewButton("Infinite Yeild", "gives you admin", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", true))()
+    end)
+    local MainSection4 = Tab:NewSection("Admin")
+
+    MainSection4:NewToggle("Infinite Jump", "makes you jump infintely", function(state)
+        local InfiniteJumpEnabled = true
+        game:GetService("UserInputService").JumpRequest:connect(function()
+        game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass"Humanoid":ChangeState("Jumping")
+        if InfiniteJumpEnabled then
+            print("Toggle On")
+        else
+            print("Toggle Off")
+        end
+    end)
+end)
+end
+
+
+if game.PlaceId == 155615604 then
+    Script()
+end
